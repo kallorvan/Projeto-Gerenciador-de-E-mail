@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "a",
+  "attributes": {
+    "href": "@currentField",
+    "target": "_blank"
+  },
+  "style": {
+    "display": "=if(@currentField == '', 'none', 'inline-block')",
+    "padding": "2px 10px",
+    "border-radius": "4px",
+    "background-color": "#0f6cbd",
+    "color": "#ffffff",
+    "text-decoration": "none"
+  },
+  "txtContent": "Abrir no Outlook"
+}

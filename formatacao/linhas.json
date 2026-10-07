@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json",
+  "additionalRowClass": "=if([$Status] == 'Pendente' && [$Prioridade] == 1, 'sp-field-severity--severeWarning', if([$Status] == 'Pendente' && [$Prioridade] == 2, 'sp-field-severity--warning', if([$Status] == 'Respondido', 'sp-field-severity--good', '')))"
+}

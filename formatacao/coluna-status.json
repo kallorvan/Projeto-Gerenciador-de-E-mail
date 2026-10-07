@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "padding": "2px 10px",
+    "border-radius": "12px",
+    "font-weight": "600",
+    "display": "inline-block",
+    "color": "=if(@currentField == 'Pendente', '#8a3700', if(@currentField == 'Respondido', '#0e700e', '#605e5c'))",
+    "background-color": "=if(@currentField == 'Pendente', '#fde7c7', if(@currentField == 'Respondido', '#dff6dd', '#edebe9'))"
+  },
+  "txtContent": "@currentField"
+}

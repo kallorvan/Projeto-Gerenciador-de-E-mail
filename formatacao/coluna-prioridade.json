@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "padding": "2px 10px",
+    "border-radius": "12px",
+    "font-weight": "600",
+    "color": "#ffffff",
+    "background-color": "=if(@currentField == 1, '#c50f1f', if(@currentField == 2, '#da7b00', '#107c10'))"
+  },
+  "txtContent": "=if(@currentField == 1, 'Alta', if(@currentField == 2, 'Média', 'Baixa'))"
+}

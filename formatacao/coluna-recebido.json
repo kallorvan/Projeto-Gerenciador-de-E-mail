@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "children": [
+    {
+      "elmType": "div",
+      "txtContent": "=toLocaleString(@currentField)"
+    },
+    {
+      "elmType": "div",
+      "style": {
+        "font-size": "12px",
+        "font-weight": "=if([$Status] == 'Pendente' && (Number(@now) - Number(@currentField)) > 86400000, '700', '400')",
+        "color": "=if([$Status] == 'Pendente' && (Number(@now) - Number(@currentField)) > 86400000, '#c50f1f', '#605e5c')",
+        "display": "=if([$Status] == 'Pendente', 'block', 'none')"
+      },
+      "txtContent": "='em aberto há ' + floor((Number(@now) - Number(@currentField)) / 3600000) + ' h'"
+    }
+  ]
+}
