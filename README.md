@@ -41,6 +41,7 @@ apenas conectores **padrão** (não premium) do Power Automate.
 3. [Fluxo 2 — Marcar como respondido](docs/03-fluxo-respondido.md)
 4. [Aplicar a formatação visual do painel](docs/04-painel.md)
 5. [Alerta no Teams criado pelo Copilot (ex.: termo "Viagem")](docs/05-copilot-alerta-teams.md)
+6. [Varredura de e-mails não lidos já existentes](docs/06-varredura-nao-lidos.md)
 
 Arquivos de formatação JSON prontos para colar ficam em [`formatacao/`](formatacao/).
 
