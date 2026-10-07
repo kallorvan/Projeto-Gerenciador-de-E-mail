@@ -55,6 +55,21 @@ São só 4 blocos. No editor, clique em **+** para inserir cada ação:
    Abrir no Outlook: @{concat('https://outlook.office365.com/owa/?ItemID=', encodeUriComponent(triggerOutputs()?['body/id']), '&exvsurl=1&viewmodel=ReadMessageItem')}
    ```
 
+### Limpar assinatura e links do corpo
+
+O texto convertido traz a assinatura com links de imagens/redes sociais (`[https://...]`,
+links "safelinks") e o aviso legal. Para mostrar só o conteúdo escrito, troque a expressão
+`take(body('CorpoTexto'), 4000)` da mensagem por:
+
+```
+take(trim(first(split(first(split(body('CorpoTexto'), '[http')), '________________'))), 4000)
+```
+
+Ela corta o texto no **primeiro link entre colchetes** (normalmente onde começa a assinatura)
+e na **linha de separação** do Outlook que antecede o histórico citado de respostas.
+Limitação: se o e-mail tiver um link no meio do texto, o restante após o link não aparece —
+use o botão "Abrir no Outlook" para ver tudo.
+
 ## Prompt detalhado (só se o Copilot da sua versão aceitar)
 
 ```
