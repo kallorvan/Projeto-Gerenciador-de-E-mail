@@ -4,7 +4,7 @@ Objetivo: sempre que chegar um e-mail com a palavra **"Viagem"** no **assunto ou
 receber no Teams uma mensagem com o e-mail que disparou o alerta.
 
 Em https://make.powerautomate.com → **Página inicial** → caixa do Copilot
-("Descreva o que você quer automatizar"), cole o prompt principal.
+("Descreva o que você quer automatizar"), cole o prompt curto abaixo.
 
 ## Prompt curto (comece por aqui)
 
