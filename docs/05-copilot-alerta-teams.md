@@ -70,6 +70,17 @@ e na **linha de separação** do Outlook que antecede o histórico citado de res
 Limitação: se o e-mail tiver um link no meio do texto, o restante após o link não aparece —
 use o botão "Abrir no Outlook" para ver tudo.
 
+### Link como texto clicável "Abrir no Outlook"
+
+1. No ramo **Verdadeiro**, adicione **antes** da ação do Teams a ação *Compor*
+   (Operação de Dados) e renomeie para `LinkOutlook`.
+2. Entradas (expressão **fx**):
+   ```
+   concat('<a href="https://outlook.office365.com/owa/?ItemID=', encodeUriComponent(triggerOutputs()?['body/id']), '&exvsurl=1&viewmodel=ReadMessageItem">Abrir no Outlook</a>')
+   ```
+3. Na mensagem do Teams, apague a linha "Abrir no Outlook: concat(...)" e insira, pelo ⚡,
+   **Saídas** da ação `LinkOutlook`. Como a mensagem do Teams é HTML, o `<a>` vira um link clicável.
+
 ## Prompt detalhado (só se o Copilot da sua versão aceitar)
 
 ```
