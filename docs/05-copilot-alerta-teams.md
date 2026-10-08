@@ -81,6 +81,25 @@ use o botão "Abrir no Outlook" para ver tudo.
 3. Na mensagem do Teams, apague a linha "Abrir no Outlook: concat(...)" e insira, pelo ⚡,
    **Saídas** da ação `LinkOutlook`. Como a mensagem do Teams é HTML, o `<a>` vira um link clicável.
 
+## Configuração final em uso
+
+- Fluxo único na **Caixa de Entrada** (e-mails não são movidos por regras; Para, Cc e Cco são cobertos).
+- Condição com seletor **Ou**, uma linha por termo, todas com a expressão
+  `toLower(concat(triggerOutputs()?['body/subject'], ' ', body('CorpoTexto')))` **contém**:
+  `deadline` · `instruç` · `instruc`
+- Título da mensagem: `📩 E-mail com termo monitorado`.
+- Para incluir um termo: Condição → **+ Adicionar linha** → mesma expressão, `contém`, termo em minúsculas.
+
+## Passar o fluxo para outro usuário
+
+O fluxo roda com as conexões de quem o configurou — compartilhar/coproprietário **não** serve
+(continuaria lendo a caixa do autor). Use **Meus fluxos → ⋮ → Enviar uma cópia** (ou Exportar →
+Pacote .zip → o outro usuário usa Importar → Importar Pacote (Herdado)). O destinatário deve:
+
+1. Trocar as conexões (Outlook, Conversão de Conteúdo, Teams) para a **conta dele**.
+2. Trocar o **Recipient** da ação do Teams para **ele mesmo**.
+3. Salvar, **Ativar** e testar.
+
 ## Prompt detalhado (só se o Copilot da sua versão aceitar)
 
 ```
