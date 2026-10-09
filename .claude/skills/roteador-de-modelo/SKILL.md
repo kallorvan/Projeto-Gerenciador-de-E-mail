@@ -9,9 +9,12 @@ Esta skill classifica o serviço pedido e o executa no modelo mais adequado,
 equilibrando custo, velocidade e qualidade.
 
 > **Limitação:** uma skill não troca o modelo da conversa principal. A troca
-> acontece delegando o serviço a um subagente configurado com o modelo escolhido
-> (`.claude/agents/modelo-*.md`). Para trocar o modelo da sessão inteira, o
-> usuário usa `/model`.
+> acontece delegando o serviço a um subagente com o modelo escolhido. Para
+> trocar o modelo da sessão inteira, o usuário usa `/model`.
+>
+> **Funciona sozinha:** os subagentes dedicados (`modelo-rapido`,
+> `modelo-padrao`, `modelo-avancado`) são opcionais. Se não estiverem
+> instalados, a skill usa o subagente `general-purpose` com o parâmetro `model`.
 
 ## Passo 1 — Classificar o serviço
 
@@ -41,14 +44,34 @@ Antes de delegar, diga em uma linha qual nível foi escolhido e por quê. Exempl
 
 ## Passo 3 — Delegar
 
+Primeiro veja se o subagente dedicado do nível existe: ele aparece na lista de
+tipos de agente disponíveis da ferramenta `Agent` (ou como arquivo em
+`.claude/agents/` do projeto ou `~/.claude/agents/`).
+
 Chame a ferramenta `Agent` com:
 
-- `subagent_type`: o subagente do nível (`modelo-rapido`, `modelo-padrao` ou `modelo-avancado`);
-- `model`: `haiku`, `sonnet` ou `opus` (reforça a escolha mesmo se o subagente não for encontrado);
+- `subagent_type`:
+  - se o subagente dedicado existir: `modelo-rapido`, `modelo-padrao` ou `modelo-avancado`;
+  - se não existir: `general-purpose` (se esse também não estiver na lista,
+    omita `subagent_type`);
+- `model`: `haiku`, `sonnet` ou `opus` — **sempre** informe; é ele que garante o
+  modelo quando se usa `general-purpose`;
 - `prompt`: instrução **autossuficiente** — o subagente começa sem o contexto da
   conversa, então inclua objetivo, arquivos relevantes, restrições e o formato
-  de resposta esperado;
+  de resposta esperado. Ao usar `general-purpose`, acrescente no início do
+  prompt a postura do nível:
+  - Rápido: "Execute à risca, sem ampliar o escopo, e responda de forma curta.
+    Se a tarefa for mais complexa do que parece, pare e avise."
+  - Padrão: "Leia o código relevante antes de alterar, siga o estilo existente,
+    valide o que fizer e termine com: o que foi feito, arquivos alterados e
+    pontos em aberto."
+  - Avançado: "Investigue a fundo antes de agir, considere alternativas e
+    efeitos colaterais, valide com evidências e termine com: diagnóstico,
+    decisão e por quê, mudanças feitas e riscos remanescentes."
 - `run_in_background: false` quando o próximo passo depender do resultado.
+
+Se a chamada falhar porque o `subagent_type` não existe, repita com
+`general-purpose` (ou sem `subagent_type`) mantendo o mesmo `model`.
 
 ## Passo 4 — Conferir e entregar
 
