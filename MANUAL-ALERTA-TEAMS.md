@@ -287,9 +287,14 @@ O fluxo **não lê** o conteúdo de anexos. Ler PDF exige AI Builder (licença p
 
 ### Usar o fluxo em outra conta
 O jeito mais seguro é **montar do zero com este manual**, logado na conta da outra pessoa.
-Alternativa: **Meus fluxos → ⋮ → Enviar uma cópia** → a outra pessoa abre a cópia → **Editar** →
-em cada bloco, **Alterar conexão** para a conta dela → troca o **Recipient** do Teams para ela →
-**Salvar** → **Ativar**.
+Como o destinatário é automático (`MeuPerfil`), não há nada a ajustar depois — basta testar.
+
+- **Mesmo ambiente / mesma empresa:** **não** importe uma Solução exportada de outra conta —
+  a importação **atualiza o fluxo original** em vez de criar uma cópia. Monte com o manual
+  (ou use **Meus fluxos → ⋮ → Enviar uma cópia** e troque as conexões de cada bloco para a conta da pessoa).
+- **Outro ambiente / outra empresa:** pode usar **Soluções → Importar solução** com o `.zip`
+  exportado; na tela de conexões, escolha (ou crie) as conexões da pessoa para Office 365 Outlook,
+  Microsoft Teams, Office 365 Users e Content Conversion. Depois confira se o fluxo está **Ativado**.
 
 > ⚠️ Nunca deixe o fluxo de outra pessoa usando a **sua** conexão do Outlook: ele leria o **seu** e-mail.
 
