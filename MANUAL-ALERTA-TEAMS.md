@@ -171,7 +171,19 @@ nem corrige erros de digitação. Usar a raiz da palavra cobre as variações:
 
 ## 4. Montar o link "Abrir no Outlook" (LinkOutlook)
 
+**4.0 — Perfil de quem usa o fluxo (destinatário automático)**
+
 1. Na Condição, no quadro **Verdadeiro**, clique no **⊕** → **Adicionar uma ação**.
+2. Busque `obter meu perfil` → **"Obter meu perfil (V2)"** (*Office 365 Users*). Nenhum campo a preencher.
+3. **Renomeie** para:
+
+   ```
+   MeuPerfil
+   ```
+
+**4.1 — LinkOutlook**
+
+1. No quadro **Verdadeiro**, clique no **⊕ abaixo de MeuPerfil** → **Adicionar uma ação**.
 2. Busque `compor` → **Compor** (*Operação de Dados*).
 3. **Renomeie** para:
 
@@ -199,7 +211,7 @@ nem corrige erros de digitação. Usar a raiz da palavra cobre as variações:
 |---|---|
 | Postar como | **Bot do Flow** (Flow bot) |
 | Postar em | **Conversar com o bot do Flow** (Chat with Flow bot) |
-| Recipient | **o e-mail da própria pessoa que usa o fluxo** |
+| Recipient | **fx** `coalesce(outputs('MeuPerfil')?['body/mail'], outputs('MeuPerfil')?['body/userPrincipalName'])` — envia sempre para quem está conectado ao fluxo. Se o campo só mostrar a busca de pessoas, clique no ⚙️ ao lado ou em *Inserir valor personalizado* e use o **fx**. |
 
 4. **Mensagem** — monte linha por linha (use **Enter** para quebrar linha):
 
@@ -315,6 +327,11 @@ toLower(replace(replace(replace(concat(triggerOutputs()?['body/subject'], ' ', b
 concat('<a href="https://outlook.office365.com/owa/?ItemID=', encodeUriComponent(triggerOutputs()?['body/id']), '&exvsurl=1&viewmodel=ReadMessageItem">Abrir no Outlook</a>')
 ```
 
+**Recipient automático** (ação do Teams):
+```
+coalesce(outputs('MeuPerfil')?['body/mail'], outputs('MeuPerfil')?['body/userPrincipalName'])
+```
+
 **Corpo limpo** (mensagem do Teams):
 ```
 take(trim(first(split(first(split(body('CorpoTexto'), '[http')), '________________'))), 4000)
@@ -326,6 +343,7 @@ Quando um novo email é recebido (V3) — Caixa de Entrada
 └─ CorpoTexto (HTML em texto)
    └─ Condição  [E]  Grupo 1 [Ou]  +  Grupo 2 [Ou]
       ├─ Verdadeiro:
+      │   ├─ MeuPerfil (Obter meu perfil V2)
       │   ├─ LinkOutlook (Compor)
       │   └─ Postar mensagem em um chat ou canal (Teams)
       └─ Falso: (vazio)
