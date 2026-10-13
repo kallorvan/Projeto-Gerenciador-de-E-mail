@@ -36,6 +36,8 @@ apenas conectores **padrão** (não premium) do Power Automate.
 
 ## Passo a passo
 
+> **Manual completo do alerta no Teams (montar do zero em outra conta/máquina):** [MANUAL-ALERTA-TEAMS.md](MANUAL-ALERTA-TEAMS.md)
+
 1. [Criar as listas no SharePoint/Microsoft Lists](docs/01-listas.md)
 2. [Fluxo 1 — Captura de e-mails](docs/02-fluxo-captura.md)
 3. [Fluxo 2 — Marcar como respondido](docs/03-fluxo-respondido.md)
